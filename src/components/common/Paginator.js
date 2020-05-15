@@ -17,8 +17,6 @@ function Paginator({limit, page, count, fetchItems}) {
         pagesArray.map((pageItem, index) => {
           const currentPage = index + 1;
 
-          console.log(currentPage, page);
-
           return (
             <Button
               variant={currentPage === page ? 'contained' : 'outlined'}

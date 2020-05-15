@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,7 +14,6 @@ import {
 } from "react-router-dom";
 
 import Paginator from './../containers/CategoryPaginator';
-
 
 const useStyles = makeStyles({
   table: {
@@ -55,17 +54,17 @@ function CategoryList({fetchCategories, items, fetchCategoryError}) {
                 </TableCell>
                 <TableCell>{title}</TableCell>
                 <TableCell>{description}</TableCell>
-                <TableCell>
-                  <Button variant="contained" color="primary" >
-                    <NavLink className='nav-link' activeClassName='active' to={`/category/${id}`}>Show</NavLink>
-                  </Button>
+                <TableCell align='right'>
+                  <Button variant="contained" color="secondary">Remove</Button>
+                  <Button variant="contained">Edit</Button>
+                  <NavLink className='nav-link' to={`/category/${id}`}><Button variant="contained" color="primary">Show ></Button></NavLink>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Paginator />
+      <Paginator/>
     </div>
   );
 }

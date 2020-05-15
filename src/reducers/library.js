@@ -25,7 +25,9 @@ function libraryReducer(state = initialState, action) {
     case 'LIBRARY/FETCH_CATEGORIES':
       return update(state, {
         $merge: {
-          categoryPage: action.payload.page,
+          categoryPage: action.payload.page
+            ? action.payload.page
+            : initialState.categoryPage,
         }
       });
     default:
