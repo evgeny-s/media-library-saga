@@ -22,6 +22,12 @@ function libraryReducer(state = initialState, action) {
           fetchCategoryError: action.payload.message,
         }
       });
+    case 'LIBRARY/FETCH_CATEGORIES':
+      return update(state, {
+        $merge: {
+          categoryPage: action.payload.page,
+        }
+      });
     default:
       return state
   }

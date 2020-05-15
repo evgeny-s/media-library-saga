@@ -8,6 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import {
+  NavLink
+} from "react-router-dom";
 
 import Paginator from './../containers/CategoryPaginator';
 
@@ -40,6 +44,7 @@ function CategoryList({fetchCategories, items, fetchCategoryError}) {
               <TableCell>#</TableCell>
               <TableCell align="right">Title</TableCell>
               <TableCell align="right">Description</TableCell>
+              <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -48,8 +53,13 @@ function CategoryList({fetchCategories, items, fetchCategoryError}) {
                 <TableCell component="th" scope="row">
                   {id}
                 </TableCell>
-                <TableCell align="right">{title}</TableCell>
-                <TableCell align="right">{description}</TableCell>
+                <TableCell>{title}</TableCell>
+                <TableCell>{description}</TableCell>
+                <TableCell>
+                  <Button variant="contained" color="primary" >
+                    <NavLink className='nav-link' activeClassName='active' to={`/category/${id}`}>Show</NavLink>
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

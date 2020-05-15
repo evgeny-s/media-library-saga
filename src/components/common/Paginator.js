@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 function Paginator({limit, page, count, fetchItems}) {
   const pages = Math.ceil(count / limit);
@@ -9,17 +10,30 @@ function Paginator({limit, page, count, fetchItems}) {
 
   return (
     <div>
-      <button>Back</button>
+      <Button variant="outlined" color="primary">
+        Back
+      </Button>
       {
         pagesArray.map((pageItem, index) => {
           const currentPage = index + 1;
 
+          console.log(currentPage, page);
+
           return (
-            <button key={currentPage} onClick={fetchItems.bind(this, currentPage)}>{currentPage}</button>
+            <Button
+              variant={currentPage === page ? 'contained' : 'outlined'}
+              color="primary"
+              key={currentPage}
+              onClick={fetchItems.bind(this, currentPage)}
+            >
+              {currentPage}
+            </Button>
           );
         })
       }
-      <button>Next</button>
+      <Button variant="outlined" color="primary">
+        Next
+      </Button>
     </div>
   );
 }
