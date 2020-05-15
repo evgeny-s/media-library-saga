@@ -2,11 +2,11 @@ import {call, put, takeLatest, all, select} from 'redux-saga/effects';
 
 import libraryService from './../services/libraryService';
 
-function* fetchCategories() {
+function* fetchCategories(action) {
   try {
-    let items = yield call(libraryService.fetchCategories);
+    let {items, count} = yield call(libraryService.fetchCategories, action.payload.page);
 
-    yield put({type: 'LIBRARY/FETCH_CATEGORIES_SUCCESSFULLY', payload: {items}});
+    yield put({type: 'LIBRARY/FETCH_CATEGORIES_SUCCESSFULLY', payload: {items, count}});
   } catch ({message}) {
     yield put({type: 'LIBRARY/FETCH_CATEGORIES_ERROR', payload: {message}});
   }

@@ -1,16 +1,18 @@
 import {connect} from 'react-redux';
 
-import CategoryList from "../components/CategoryList";
+import Paginator from "../components/common/Paginator";
+import listsConsts from "../consts/lists";
 
 const mapStateToProps = state => {
   return {
-    items: state.library.categories,
-    fetchCategoryError: state.library.fetchCategoryError,
+    page: state.library.categoryPage,
+    count: state.library.categoriesCount,
+    limit: listsConsts.CATEGORIES_FETCH_LIMIT,
   }
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: (page) => dispatch({
+    fetchItems: (page) => dispatch({
       type: 'LIBRARY/FETCH_CATEGORIES',
       payload: {
         page,
@@ -22,4 +24,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CategoryList);
+)(Paginator);

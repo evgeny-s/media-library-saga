@@ -9,6 +9,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 
+import Paginator from './../containers/CategoryPaginator';
+
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -52,14 +55,17 @@ function CategoryList({fetchCategories, items, fetchCategoryError}) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Paginator />
     </div>
   );
 }
 
 CategoryList.propTypes = {
+  page: PropTypes.number,
   items: PropTypes.array,
   fetchCategories: PropTypes.func,
   fetchCategoryError: PropTypes.string,
+  count: PropTypes.number,
 };
 
 export default CategoryList;
