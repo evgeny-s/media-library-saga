@@ -4,9 +4,30 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import {createStore, applyMiddleware} from 'redux'
+import reducer from './reducers';
+import {Provider} from 'react-redux';
+import logger from 'redux-logger';
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+import createSagaMiddleware from 'redux-saga';
+
+import librarySaga from './sagas/librarySaga';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
+
+sagaMiddleware.run(librarySaga);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
