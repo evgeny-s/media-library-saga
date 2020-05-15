@@ -7,7 +7,7 @@ const initialState = {
   categoriesCount: 0,
 };
 
-function articleReducer(state = initialState, action) {
+function libraryReducer(state = initialState, action) {
   switch (action.type) {
     case 'LIBRARY/FETCH_CATEGORIES_SUCCESSFULLY':
       return update(state, {
@@ -27,4 +27,4 @@ function articleReducer(state = initialState, action) {
   }
 }
 
-export default articleReducer;
+export default libraryReducer;
