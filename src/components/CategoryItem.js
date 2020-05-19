@@ -90,7 +90,7 @@ function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks
           </TableContainer>
         )
       }
-      <DialogForm currentCategoryId={id} />
+      <DialogForm currentCategoryId={+id} />
     </Container>
   );
 }

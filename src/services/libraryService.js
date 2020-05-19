@@ -25,9 +25,15 @@ class LibraryService {
   }
 
   async saveTrack(track) {
-    // const response = await fetch();
+    const response = await fetch(`${BASE_URL}/tracks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(track),
+    });
 
-    // return await response.json();
+    return await response.json();
   }
 }
 

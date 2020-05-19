@@ -33,12 +33,8 @@ function DialogForm({isAddTrackFormVisible, closeDialog, saveTrack, currentCateg
   return (
     <div>
       <Dialog open={isAddTrackFormVisible} onClose={closeDialog} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add Track</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
-          </DialogContentText>
           <TextField
             onChange={_change.bind(this, 'Name')}
             autoFocus

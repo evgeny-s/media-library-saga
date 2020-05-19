@@ -74,7 +74,10 @@ const libraryReducer = handleActions({
   [Actions['LIBRARY/SAVE_TRACK_SUCCESS']]: (state, action) => {
     return update(state, {
       categoryTracks: {
-        $push: [action.payload]
+        $push: [action.payload],
+      },
+      $merge: {
+        isAddTrackFormVisible: false,
       }
     });
   },
