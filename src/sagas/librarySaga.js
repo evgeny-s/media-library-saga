@@ -14,14 +14,28 @@ function* fetchCategories(action) {
   }
 }
 
+function* fetchCategoryData(action) {
+  try {
+    let categoryData = yield call(libraryService.fetchCategoryData, action.payload);
+    let categoryTracks = yield call(libraryService.fetchCategoryTracks, action.payload);
+
+    yield put(Actions['LIBRARY/FETCH_CATEGORY_DATA_SUCCESSFULLY']({categoryData, categoryTracks}));
+  } catch ({message}) {
+    yield put(Actions['LIBRARY/FETCH_CATEGORY_DATA_ERROR']({message}));
+  }
+}
+
 function* fetchCategoriesSaga() {
   yield takeLatest('LIBRARY/FETCH_CATEGORIES', fetchCategories);
 }
 
-
+function* fetchCategoryDataSaga() {
+  yield takeLatest('LIBRARY/FETCH_CATEGORY_DATA', fetchCategoryData);
+}
 
 export default function* librarySaga() {
   yield all([
     fetchCategoriesSaga(),
+    fetchCategoryDataSaga(),
   ]);
 };

@@ -18,5 +18,8 @@
     {"id": 16, "title": "Category 16", "description": "Description 16"},
     {"id": 17, "title": "Category 17", "description": "Description 17"},
     {"id": 18, "title": "Category 18", "description": "Description 18"}
+  ],
+  "tracks": [
+    {"id": 1, "name": "Some track name", "url": "http://some.url", "duration": "5", "categoryId": 1}
   ]
 }

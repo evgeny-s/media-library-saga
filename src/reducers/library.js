@@ -8,6 +8,10 @@ const initialState = {
   fetchCategoryError: '',
   categoryPage: 1,
   categoriesCount: 0,
+
+  categoryData: null,
+  categoryTracks: [],
+  fetchCategoryDataError: '',
 };
 
 const libraryReducer = handleActions({
@@ -19,10 +23,26 @@ const libraryReducer = handleActions({
       }
     });
   },
+  [Actions['LIBRARY/FETCH_CATEGORY_DATA_SUCCESSFULLY']]: (state, action) => {
+    const {categoryData, categoryTracks} = action.payload;
+    return update(state, {
+      $merge: {
+        categoryData,
+        categoryTracks,
+      }
+    });
+  },
   [Actions['LIBRARY/FETCH_CATEGORIES_ERROR']]: (state, action) => {
     return update(state, {
       $merge: {
         fetchCategoryError: action.payload.message,
+      }
+    });
+  },
+  [Actions['LIBRARY/FETCH_CATEGORY_DATA_ERROR']]: (state, action) => {
+    return update(state, {
+      $merge: {
+        fetchCategoryDataError: action.payload.message,
       }
     });
   },

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   NavLink
 } from "react-router-dom";
@@ -18,6 +19,12 @@ import Paginator from './../containers/CategoryPaginator';
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+  },
+  progress: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '500px'
   },
 });
 
@@ -33,6 +40,14 @@ function CategoryList({fetchCategories, items, fetchCategoryError}) {
   }, [fetchCategoryError]);
 
   const classes = useStyles();
+
+  if (items.length === 0 && fetchCategoryError === '') {
+    return (
+      <div className={classes.progress}>
+        <CircularProgress/>
+      </div>
+    );
+  }
 
   return (
     <div>
