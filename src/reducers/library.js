@@ -12,6 +12,8 @@ const initialState = {
   categoryData: null,
   categoryTracks: [],
   fetchCategoryDataError: '',
+
+  isAddTrackFormVisible: false,
 };
 
 const libraryReducer = handleActions({
@@ -54,7 +56,28 @@ const libraryReducer = handleActions({
           : initialState.categoryPage,
       }
     });
-  }
+  },
+  [Actions['LIBRARY/CLOSE_TRACK_FORM_DIALOG']]: (state, action) => {
+    return update(state, {
+      $merge: {
+        isAddTrackFormVisible: false,
+      }
+    });
+  },
+  [Actions['LIBRARY/OPEN_TRACK_FORM_DIALOG']]: (state, action) => {
+    return update(state, {
+      $merge: {
+        isAddTrackFormVisible: true,
+      }
+    });
+  },
+  [Actions['LIBRARY/SAVE_TRACK_SUCCESS']]: (state, action) => {
+    return update(state, {
+      categoryTracks: {
+        $push: [action.payload]
+      }
+    });
+  },
 }, initialState);
 
 export default libraryReducer;

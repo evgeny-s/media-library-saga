@@ -1,4 +1,4 @@
-import {call, put, takeLatest, all, select} from 'redux-saga/effects';
+import {call, put, takeLatest, all} from 'redux-saga/effects';
 
 import libraryService from './../services/libraryService';
 
@@ -25,6 +25,16 @@ function* fetchCategoryData(action) {
   }
 }
 
+function* saveTrack(action) {
+  try {
+    let track = yield call(libraryService.saveTrack, action.payload);
+
+    yield put(Actions['LIBRARY/SAVE_TRACK_SUCCESS'](track));
+  } catch ({message}) {
+    yield put(Actions['LIBRARY/SAVE_TRACK_ERROR']({message}));
+  }
+}
+
 function* fetchCategoriesSaga() {
   yield takeLatest('LIBRARY/FETCH_CATEGORIES', fetchCategories);
 }
@@ -33,9 +43,14 @@ function* fetchCategoryDataSaga() {
   yield takeLatest('LIBRARY/FETCH_CATEGORY_DATA', fetchCategoryData);
 }
 
+function* saveTrackSaga() {
+  yield takeLatest('LIBRARY/SAVE_TRACK', saveTrack);
+}
+
 export default function* librarySaga() {
   yield all([
     fetchCategoriesSaga(),
     fetchCategoryDataSaga(),
+    saveTrackSaga(),
   ]);
 };

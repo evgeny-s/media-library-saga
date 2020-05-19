@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
@@ -14,6 +15,7 @@ import {
   useParams
 } from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles/index";
+import DialogForm from "../containers/DialogForm";
 
 const useStyles = makeStyles({
   table: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks, categoryData}) {
+function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks, categoryData, openTrackDialog}) {
   let {id} = useParams();
 
   useEffect(() => {
@@ -62,13 +64,14 @@ function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks
       {
         categoryTracks.length !== 0 && (
           <TableContainer>
+            <Button color='primary' onClick={openTrackDialog} variant="contained">Add New</Button>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>#</TableCell>
-                  <TableCell align="right">Name</TableCell>
-                  <TableCell align="right">Url</TableCell>
-                  <TableCell align="right">Duration</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Url</TableCell>
+                  <TableCell>Duration</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -87,6 +90,7 @@ function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks
           </TableContainer>
         )
       }
+      <DialogForm currentCategoryId={id} />
     </Container>
   );
 }
@@ -96,6 +100,7 @@ CategoryItem.propTypes = {
   categoryData: PropTypes.object,
   categoryTracks: PropTypes.array,
   fetchCategoryDataError: PropTypes.string,
+  openTrackDialog: PropTypes.func,
 };
 
 export default CategoryItem;

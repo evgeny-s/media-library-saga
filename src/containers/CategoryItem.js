@@ -13,6 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategoryData: (id) => dispatch(Actions["LIBRARY/FETCH_CATEGORY_DATA"](id)),
+    openTrackDialog: (id) => dispatch(Actions["LIBRARY/OPEN_TRACK_FORM_DIALOG"]()),
   };
 };
 

@@ -23,6 +23,12 @@ class LibraryService {
 
     return await response.json();
   }
+
+  async saveTrack(track) {
+    // const response = await fetch();
+
+    // return await response.json();
+  }
 }
 
 export default new LibraryService();
