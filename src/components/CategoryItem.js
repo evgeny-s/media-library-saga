@@ -45,6 +45,7 @@ function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks
 
   return (
     <Container>
+      <Typography variant='h4'>Category Data</Typography>
       {
         categoryData && (
           <Card variant="outlined">
@@ -61,7 +62,7 @@ function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks
       }
       {
         categoryTracks.length !== 0 && (
-          <TableContainer component={Paper}>
+          <TableContainer>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
