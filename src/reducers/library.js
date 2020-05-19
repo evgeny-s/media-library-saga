@@ -1,4 +1,7 @@
 import update from 'immutability-helper';
+import {handleActions} from 'redux-actions';
+
+import Actions from './../actions/library';
 
 const initialState = {
   categories: [],
@@ -7,32 +10,31 @@ const initialState = {
   categoriesCount: 0,
 };
 
-function libraryReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'LIBRARY/FETCH_CATEGORIES_SUCCESSFULLY':
-      return update(state, {
-        $merge: {
-          categories: action.payload.items,
-          categoriesCount: action.payload.count,
-        }
-      });
-    case 'LIBRARY/FETCH_CATEGORIES_ERROR':
-      return update(state, {
-        $merge: {
-          fetchCategoryError: action.payload.message,
-        }
-      });
-    case 'LIBRARY/FETCH_CATEGORIES':
-      return update(state, {
-        $merge: {
-          categoryPage: action.payload.page
-            ? action.payload.page
-            : initialState.categoryPage,
-        }
-      });
-    default:
-      return state
+const libraryReducer = handleActions({
+  [Actions['LIBRARY/FETCH_CATEGORIES_SUCCESSFULLY']]: (state, action) => {
+    return update(state, {
+      $merge: {
+        categories: action.payload.items,
+        categoriesCount: action.payload.count,
+      }
+    });
+  },
+  [Actions['LIBRARY/FETCH_CATEGORIES_ERROR']]: (state, action) => {
+    return update(state, {
+      $merge: {
+        fetchCategoryError: action.payload.message,
+      }
+    });
+  },
+  [Actions['LIBRARY/FETCH_CATEGORIES']]: (state, action) => {
+    return update(state, {
+      $merge: {
+        categoryPage: action.payload.page
+          ? action.payload.page
+          : initialState.categoryPage,
+      }
+    });
   }
-}
+}, initialState);
 
 export default libraryReducer;

@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 
 import Paginator from "../components/common/Paginator";
 import listsConsts from "../consts/lists";
+import Actions from './../actions/library';
 
 const mapStateToProps = state => {
   return {
@@ -12,12 +13,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchItems: (page) => dispatch({
-      type: 'LIBRARY/FETCH_CATEGORIES',
-      payload: {
-        page,
-      }
-    }),
+    fetchItems: (page) => dispatch(Actions["LIBRARY/FETCH_CATEGORIES"]({page})),
   };
 };
 

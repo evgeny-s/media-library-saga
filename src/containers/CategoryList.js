@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 
 import CategoryList from "../components/CategoryList";
+import Actions from "../actions/library";
 
 const mapStateToProps = state => {
   return {
@@ -10,12 +11,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: (page) => dispatch({
-      type: 'LIBRARY/FETCH_CATEGORIES',
-      payload: {
-        page,
-      }
-    }),
+    fetchCategories: (page) => dispatch(Actions["LIBRARY/FETCH_CATEGORIES"]({page})),
   };
 };
 
