@@ -27,6 +27,17 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  link: {
+    color: 'white',
+    textDecoration: 'none',
+  },
+  welcome: {
+    height: '500px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  }
 }));
 
 function App() {
@@ -42,8 +53,8 @@ function App() {
           <Typography variant="h6" className={classes.title}>
             Media Library
           </Typography>
-          <NavLink className='nav-link' activeClassName='active' to="/" exact><Button color="inherit">Home</Button></NavLink>
-          <NavLink className='nav-link' activeClassName='active' to="/categories"><Button color="inherit">Categories</Button></NavLink>
+          <NavLink className={classes.link} activeClassName='active' to="/" exact><Button color="inherit">Home</Button></NavLink>
+          <NavLink className={classes.link} activeClassName='active' to="/categories"><Button color="inherit">Categories</Button></NavLink>
         </Toolbar>
       </AppBar>
     );
@@ -54,7 +65,10 @@ function App() {
       {renderNavigation()}
       <Switch>
         <Route path="/" exact>
-          <h3>Welcome to Media Library!</h3>
+          <div className={classes.welcome}>
+            <h3>Welcome to Media Library!</h3>
+            <NavLink className={classes.link} activeClassName='active' to="/categories"><Button variant="contained" color="primary">Start</Button></NavLink>
+          </div>
         </Route>
         <Route path="/categories">
           <CategoryList />

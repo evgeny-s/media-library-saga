@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import {
   useParams
 } from "react-router-dom";
-import Paper from "@material-ui/core/Paper/index";
 import {makeStyles} from "@material-ui/core/styles/index";
 
 const useStyles = makeStyles({
@@ -67,9 +66,9 @@ function CategoryItem({fetchCategoryData, fetchCategoryDataError, categoryTracks
               <TableHead>
                 <TableRow>
                   <TableCell>#</TableCell>
-                  <TableCell align="right">Title</TableCell>
-                  <TableCell align="right">Description</TableCell>
-                  <TableCell align="right">Action</TableCell>
+                  <TableCell align="right">Name</TableCell>
+                  <TableCell align="right">Url</TableCell>
+                  <TableCell align="right">Duration</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
